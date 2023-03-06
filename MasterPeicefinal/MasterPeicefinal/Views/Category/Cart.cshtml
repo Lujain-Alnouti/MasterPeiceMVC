@@ -1,0 +1,281 @@
+﻿@model IEnumerable<MasterPeicefinal.Models.Cart>
+
+@{
+    ViewBag.Title = "Cart";
+}
+
+@*<h2>Cart</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AspNetUser.Email)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.CartID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.CartID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.CartID })
+            </td>
+        </tr>
+    }
+
+    </table>*@
+
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script src="https://kit.fontawesome.com/a8b56cb52b.js" crossorigin="anonymous"></script>
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+<!-- Bootstrap Icons-->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+<!-- Google fonts-->
+<link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+<!-- SimpleLightbox plugin CSS-->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
+
+<link href="~/website/vendor/animate.css/animate.min.css" rel="stylesheet" />
+<link href="~/website/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" />
+<link href="~/website/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+<link href="~/website/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+<link href="~/website/vendor/aos/aos.css" rel="stylesheet" />
+<link href="~/website/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+<link href="~/website/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+
+
+<style>
+         body{
+/*           color:#E6E6E6;*/
+           /* background-color:#0A4438;*/
+
+background: rgba(10, 68, 56, 0.83);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(2.5px);
+-webkit-backdrop-filter: blur(2.5px);
+/*            font-family:'Times New Roman';
+*/        }
+        @@media (min-width: 1025px) {
+.h-custom {
+height: 100vh !important;
+}
+}
+
+.card-registration .select-input.form-control[readonly]:not([disabled]) {
+font-size: 1rem;
+line-height: 2.15;
+padding-left: .75em;
+padding-right: .75em;
+}
+
+.card-registration .select-arrow {
+top: 13px;
+}
+
+.bg-grey {
+background-color: #eae8e8;
+}
+
+@@media (min-width: 992px) {
+.card-registration-2 .bg-grey {
+border-top-right-radius: 16px;
+border-bottom-right-radius: 16px;
+}
+}
+
+@@media (max-width: 991px) {
+.card-registration-2 .bg-grey {
+border-bottom-left-radius: 16px;
+border-bottom-right-radius: 16px;
+}
+}
+.empty{
+    width:50%;
+    height:300px;
+    margin-left:25%;
+}
+</style>
+
+    <section>
+        <div class="container py-5">
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-12">
+                    <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+                        <div class="card-body p-0">
+                            <div class="row g-0">
+                                <div class="col-lg-8">
+                                    <div class="p-5">
+                                        <div class="d-flex justify-content-between align-items-center mb-5">
+                                            <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
+                                            <h6 class="mb-0 text-muted">@ViewBag.Num items</h6>
+                                        </div>
+                                        <hr class="my-4">
+                                        @if (@ViewBag.Num == 0)
+                                        {
+                                            <h4 class="text-center mt-10" style="color: rgba(10, 68, 56, 0.83)">
+                                                You Don't Have Items Yet
+                                            </h4>
+
+                                            <img src="~/website/carts.png" class="empty"/>
+                                        }
+                                        @foreach (var item in Model)
+                                        {
+                                            <div class="row mb-4 d-flex justify-content-between align-items-center">
+                                                <div class="col-md-2 col-lg-2 col-xl-2">
+                                                    <img src="~/website/@item.Product.ProductImage" class="img-fluid rounded-3" />
+
+                                                </div>
+                                                <div class="col-md-3 col-lg-3 col-xl-3">
+                                                    <h6 class="text-muted" id="categoryName">@item.Product.Category.CategoryName</h6>
+                                                    <h6 class="text-black mb-0" id="productName">@item.Product.ProductName</h6>
+                                                </div>
+                                                <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                                                    <input name="quantity" type="number" class="form-control form-control-sm" value="@item.Quantity" max="20" min="1" width="70" autocomplete="" />
+                                                    @*<asp:TextBox ID="Q" runat="server" TextMode="Number" CssClass="form-control form-control-sm" Text="1" Width="70px"></asp:TextBox>
+                    <asp:RangeValidator ID="RangeValidator1" runat="server" ErrorMessage="1 - 50" ForeColor="Red" ControlToValidate="Q" Type="Integer" MinimumValue="1" MaximumValue="50"></asp:RangeValidator>*@
+
+
+
+
+                                                </div>
+                                                <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                                    <h6 class="mb-0" id="price">@item.Price</h6>
+                                                </div>
+                                                <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                                                    <a href="/Category/DeleteFromCart/@item.ProductID" class="text-muted"><i class="fas fa-times"></i></a>
+                                                </div>
+                                            </div>
+
+                                            <hr class="my-4">
+                                        }
+
+                                        @*<div class="row mb-4 d-flex justify-content-between align-items-center">
+            <div class="col-md-2 col-lg-2 col-xl-2">
+                <asp:Image ID="IMGproduct2" runat="server" CssClass="img-fluid rounded-3" ImageUrl="~/website/Bed1P.jpg" />
+
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-3">
+                <h6 class="text-muted" id="categoryName2" runat="server">BED</h6>
+                <h6 class="text-black mb-0" id="productName2" runat="server">Electric Bed</h6>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+
+                <asp:TextBox ID="Q2" runat="server" TextMode="Number" CssClass="form-control form-control-sm" Text="1" Width="70px"></asp:TextBox>
+                <asp:RangeValidator ID="RangeValidator2" runat="server" ErrorMessage="1 - 50" ForeColor="Red" ControlToValidate="Q2" Type="Integer" MinimumValue="1" MaximumValue="50"></asp:RangeValidator>
+
+
+            </div>
+            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                <h6 class="mb-0" id="price2" runat="server">650 JD</h6>
+            </div>
+            <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
+            </div>
+        </div>
+
+        <hr class="my-4">
+        <div class="row mb-4 d-flex justify-content-between align-items-center">
+            <div class="col-md-2 col-lg-2 col-xl-2">
+                <asp:Image ID="IMGproduct3" runat="server" CssClass="img-fluid rounded-3" ImageUrl="~/website/glovesW.jpg" />
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-3">
+                <h6 class="text-muted" id="categoryName3" runat="server">MEDICAL DISPOSABLES</h6>
+                <h6 class="text-black mb-0" id="productName3" runat="server">Latex Gloves</h6>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+
+                <asp:TextBox ID="Q3" runat="server" TextMode="Number" CssClass="form-control form-control-sm" Text="1" Width="70px"></asp:TextBox>
+                <asp:RangeValidator ID="RangeValidator3" runat="server" ErrorMessage="1 - 50" ForeColor="Red" ControlToValidate="Q3" Type="Integer" MinimumValue="1" MaximumValue="50"></asp:RangeValidator>
+
+
+            </div>
+            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                <h6 class="mb-0" id="price3" runat="server">7 JD</h6>
+            </div>
+            <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
+            </div>
+        </div>
+
+        <hr class="my-4">*@
+
+                                        <div class="pt-5">
+                                            <h6 class="mb-0">
+                                                <a href="/Category/Categories" class="text-body">
+                                                    <i class="fas fa-long-arrow-alt-left me-2"></i>Back to shop
+                                                </a>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 bg-grey">
+                                    <div class="p-5">
+                                        <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
+                                        <hr class="my-4">
+
+                                        <div class="d-flex justify-content-between mb-4">
+                                            <h5 class="text-uppercase">items @ViewBag.Num</h5>
+                                            <h5>@ViewBag.TotalPrice JD</h5>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-4">
+                                            <h5 class="text-uppercase">Discount</h5>
+                                            <h5>@ViewBag.Discount %</h5>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-4">
+                                            <h5 class="text-uppercase">Shipping</h5>
+                                            <h5>@ViewBag.shipping JD</h5>
+                                        </div>
+
+
+
+                                        <hr class="my-4">
+
+                                        <div class="d-flex justify-content-between mb-5">
+                                            <h5 class="text-uppercase">Total price</h5>
+                                            <h5>@ViewBag.AfterPrice JD</h5>
+                                        </div>
+
+                                        <a  class="btn btn-dark btn-block btn-lg"
+                                                data-mdb-ripple-color="dark" href="/Category/CheckOut">
+                                            Buy Now
+                                        </a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>

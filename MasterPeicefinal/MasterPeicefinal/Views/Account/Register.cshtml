@@ -1,0 +1,258 @@
+﻿@model MasterPeicefinal.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+    Layout = null;
+}
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/a8b56cb52b.js" crossorigin="anonymous"></script>
+
+<style>
+    body {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1000%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='rgba(10%2c 68%2c 56%2c 1)'%3e%3c/rect%3e%3cpath d='M0%2c393.518C71.819%2c380.292%2c108.695%2c302.719%2c163.608%2c254.579C209.122%2c214.678%2c271.542%2c190.524%2c295.135%2c134.783C318.533%2c79.503%2c305.871%2c16.048%2c288.946%2c-41.544C273.633%2c-93.649%2c237.646%2c-134.113%2c203.662%2c-176.474C168.297%2c-220.557%2c136.491%2c-268.006%2c86.351%2c-294.083C29.502%2c-323.649%2c-37.519%2c-354.846%2c-97.863%2c-333.291C-158.082%2c-311.781%2c-173.805%2c-235.209%2c-215.116%2c-186.399C-255.788%2c-138.344%2c-327.714%2c-110.687%2c-338.729%2c-48.702C-349.755%2c13.349%2c-291.144%2c63.952%2c-270.164%2c123.38C-246.477%2c190.478%2c-257.85%2c272.614%2c-207.533%2c322.927C-154.795%2c375.661%2c-73.347%2c407.025%2c0%2c393.518' fill='%23072c24'%3e%3c/path%3e%3cpath d='M1440 927.346C1509.433 924.0450000000001 1570.589 890.918 1632.998 860.31 1703.416 825.774 1785.433 803.096 1827.853 737.127 1872.245 668.092 1881.2269999999999 579.375 1865.441 498.831 1850.035 420.225 1794.068 359.187 1741.872 298.426 1689.465 237.418 1636.594 174.789 1561.763 145.31400000000002 1483.074 114.31900000000002 1393.547 101.971 1313.671 129.762 1235.239 157.051 1184.131 228.58499999999998 1133.42 294.347 1085.24 356.827 1041.375 423.01800000000003 1027.62 500.709 1013.586 579.976 1016.625 665.0840000000001 1055.279 735.696 1092.835 804.3009999999999 1164.828 844.3679999999999 1234.835 879.242 1299.008 911.21 1368.386 930.751 1440 927.346' fill='%230e5c4c'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1000'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-size: cover;
+        /*       background-color:#0A4438;
+    */
+    }
+
+    .marTopDIV {
+        margin-top: -45px;
+    }
+
+    .divConte {
+        /*height:650px;*/
+        /*margin-top:150px;
+            margin-bottom:150px;*/
+    }
+
+    .spacBet {
+        margin-left: 15px;
+    }
+
+    .divCon {
+        margin-top: 15px;
+        margin-bottom: 15px;
+        width: 60%;
+        margin-left: 20%
+    }
+
+    .imgR {
+        width: 100%;
+        height: 450px;
+        margin-top: 90px;
+    }
+
+    .divRight {
+        float: right;
+        width: 45%
+    }
+
+    .divLeft {
+        float: left;
+        width: 55%;
+    }
+    .form-label {
+        color: #0A4438;
+        font-family: 'Times New Roman'
+    }
+    @@media only screen and (min-device-width:0px) and (max-device-width:480px) {
+        .divCon {
+            margin-top: 15px;
+            margin-bottom: 15px;
+            /*height:400px;*/
+            width: 95%;
+            margin-left: 2.5%
+        }
+
+        .imgR {
+            width: 100%;
+            height: 300px;
+            margin-left: 0px;
+            margin-top: 0px;
+        }
+
+        .divRight {
+            float: unset;
+            width: 100%;
+            margin-left: 0%;
+        }
+
+        .divLeft {
+            float: unset;
+            width: 80%;
+            margin-left: 10%;
+        }
+    }
+
+
+    @@media (min-width: 481px) and (max-width:768px) {
+
+        .divCon {
+            margin-top: 15px;
+            margin-bottom: 15px;
+            /*height:400px;*/
+            width: 95%;
+            margin-left: 2.5%
+        }
+
+        .imgR {
+            width: 62%;
+            height: 300px;
+            margin-left: 124px;
+            margin-top: 0px;
+        }
+
+        .divRight {
+            float: unset;
+            width: 100%;
+            margin-left: 0%;
+        }
+
+        .divLeft {
+            float: unset;
+            width: 80%;
+            margin-left: 10%;
+        }
+
+        .buttons {
+            margin-top: -35px;
+        }
+    }
+</style>
+
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+    /*********************************************************/
+    <section class="vh-100 divCon">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-lg-12 col-xl-11">
+                    <div class="card text-black" style="border-radius: 25px;">
+                        <div class="card-body p-md-5 divConte">
+                            <div class="justify-content-center marTopDIV">
+
+                                <div>
+                                    <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4" style="color:#0A4438; font-family:'Times New Roman'">Sign up</p>
+
+                                    <div class="mx-1 mx-md-4">
+
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-user fa-lg me-3 fa-fw" style="color:#0A4438"></i>
+                                            <div class="form-outline flex-fill mb-0">
+
+                                                <label class="form-label" for="name">Your Name</label>
+                                                <div class="col-md-12">
+                                                    <input type="text" id="name" class="form-control" placeholder="XXX" name="Username" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="d-flex flex-row align-items-center mb-4 col-lg-6 col-sm-12 ">
+                                                <i class="fas fa-envelope fa-lg me-3 fa-fw" style="color:#0A4438;"></i>
+                                                <div class="form-outline flex-fill mb-0">
+                                                    @Html.LabelFor(m => m.Email, "Your Email", new { @class = "form-label" })
+                                                    <div class="col-md-12">
+                                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control"})
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="d-flex flex-row align-items-center mb-4 col-lg-6 col-sm-12">
+                                                <i class="fa-solid fa-phone me-3 fa-lg fa-fw" style="color:#0A4438;"></i>
+                                                <div class="form-outline flex-fill mb-0">
+
+                                                    <label class="form-label" for="phone">Your Phone Number</label>
+                                                    <div class="col-md-12">
+                                                        <input type="number" id="phone" class="form-control" placeholder="079xxxxxxx" name="PhoneNumber" width="300" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="d-flex flex-row align-items-center mb-4 col-lg-6 col-sm-12">
+                                                <i class="fas fa-lock fa-lg me-3 fa-fw" style="color:#0A4438;"></i>
+                                                <div class="form-outline flex-fill mb-0">
+                                                    @Html.LabelFor(m => m.Password, "Password",new { @class = "form-label" })
+                                                    <div class="col-md-12">
+                                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                                    </div>
+                                                  
+                                                </div>
+                                            </div>
+
+                                            <div class="d-flex flex-row align-items-center mb-4 col-lg-6 col-sm-12">
+                                                <i class="fas fa-key fa-lg me-3 fa-fw" style="color:#0A4438;"></i>
+                                                <div class="form-outline flex-fill mb-0">
+                                                    @Html.LabelFor(m => m.ConfirmPassword,"Confirm Password",new { @class = "form-label" })
+                                                    <div class="col-md-12">
+                                                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-check d-flex justify-content-center mb-5">
+
+                                            <label class="form-check-label" for="form2Example3">
+                                                I already have account <a href="/Account/Login">Login</a>
+                                            </label>
+                                        </div>
+
+                                        <div class="d-flex justify-content-center  mb-lg-4 buttons">
+                                            <a class="btn btn-lg" style="background-color:#0A4438; color:white" href="/Home/Index">Home</a>
+                                            <input type="submit" class="btn btn-lg spacBet" style="background-color:#0A4438; color:white" value="Register" />
+
+                                            @*<a class="btn btn-lg spacBet" style="background-color:#0A4438; color:white">Register</a>*@
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    /*********************************************************/
+    @*<div class="form-group">
+        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Register" />
+        </div>
+    </div>*@
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,368 @@
+﻿@model IEnumerable<MasterPeicefinal.Models.Category>
+
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<style>
+    /**{
+                font-family:'Times New Roman';
+
+            }*/
+    .content {
+        background-color: #0A4438 !important;
+        height: 175px;
+    }
+
+    .iconColor {
+        color: #0A4438 !important;
+    }
+
+    .discount12 {
+        margin-left: 90px;
+    }
+
+    .aboutBA {
+        background-color: #0A4438 !important;
+        color: #E6E6E6 !important;
+        /*            height:250px;
+    */ text-align: center;
+        justify-content: center;
+    }
+</style>
+<style>
+
+
+    .cards {
+        max-width: 1200px;
+        width: 100%;
+        margin: auto;
+        padding: 32px 0;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-flow: row wrap;
+        flex-flow: row wrap;
+    }
+
+    .card {
+        background: #fff;
+        width: 31.2%;
+        border-radius: 8px;
+        margin: 0 1% 16px 1%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-flow: column;
+        flex-flow: column;
+        box-shadow: 0 0 4px -2px #444;
+        /* height: 270px;   add */
+    }
+
+    .card-title {
+        padding: 18px;
+        font-size: 18px;
+        color: #222;
+    }
+
+    .card-image img {
+        display: block;
+        margin-top: 10px;
+        margin-left: 10%;
+        width: 80%;
+        max-height: 276px;
+        /* margin-top: 25px;  add */
+    }
+
+    .card-prices {
+        /* background-image: linear-gradient(-20deg, #00cdac 0%, #8ddad5 100%); */
+        background-image: linear-gradient(-20deg, #0A4438 0%, #8ddad5 100%);
+        color: #fff;
+        border-radius: 0 0 8px 8px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        font-weight: 300;
+        -ms-flex-flow: row nowrap;
+        flex-flow: row nowrap;
+        /* margin-top: auto; */
+        margin-top: 5px;
+    }
+
+
+    .price-sale {
+        width: 100%;
+        font-size: 15px;
+        padding: 16px;
+        text-align: center;
+    }
+
+    .price-org {
+        font-size: 14px;
+        padding: 16px;
+    }
+
+    @@media all and (min-width: 600px) and (max-width: 1000px) {
+        .card {
+            width: calc(100% / 3 - 2%);
+            height: auto;
+        }
+    }
+
+    @@media all and (min-width: 400px) and (max-width: 599px) {
+        .card {
+            width: calc(100% / 2 - 2%);
+            height: auto;
+        }
+    }
+
+    @@media all and (max-width: 399px) {
+        .card {
+            width: calc(100% - 2%);
+            height: auto;
+        }
+    }
+
+    .catename {
+        color: #0A4438;
+        margin-top: 6px;
+        font-family: "Raleway", sans-serif;
+    }
+</style>
+
+
+
+<section id="hero" class="d-flex align-items-center">
+    <div class="container">
+        <h1>Welcome to Pulse Life</h1>
+        <h2>Finding Best Products Now in Your Fingertips</h2>
+        <h5>Best Products With Best Place</h5>
+        <a href="/Category/Categories" class="btn-get-started scrollto">Get Started</a>
+    </div>
+</section><!-- End Hero -->
+
+<main id="main">
+
+    <!-- ======= Why Us Section ======= -->
+    <section id="why-us" class="why-us">
+        <div class="container">
+
+            <!--<%--<div class="row">
+              <div class="col-lg-3 col-md-12 col-sm-12 d-flex align-items-stretch">
+                <div class="content">
+                  <h3>Discount</h3>
+
+                  <div class="text-center">
+                    <a href="#" class="more-btn">Shop Now<i class="bx bx-chevron-right"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-9 col-md-12 col-sm-12 d-flex align-items-stretch">
+                <div class="icon-boxes d-flex flex-column justify-content-center discount12">
+                  <div class="row">
+                    <div class="col-xl-3 col-md-6 col-sm-12 d-flex align-items-stretch">
+                      <div class="icon-box mt-4 mt-xl-0 col-sm-12">
+
+                        <h1>10<i class="fa-solid fa-percent text-primary iconColor" style="margin-left:5px"></i> </h1>
+                        <p>If Total Invoice between<br /> 455-689 JD</p>
+                      </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 col-sm-12 d-flex align-items-stretch">
+                      <div class="icon-box mt-4 mt-xl-0 col-sm-12">
+
+                        <h1>15<i class="fa-solid fa-percent text-primary iconColor" style="margin-left:5px"></i></h1>
+                        <p>If Total Invoice between <br /> 690-849 JD</p>
+                      </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 col-sm-12 d-flex align-items-stretch">
+                      <div class="icon-box mt-4 mt-xl-0 col-sm-12">
+                        <h1>20<i class="fa-solid fa-percent text-primary iconColor" style="margin-left:5px"></i></h1>
+                        <p>If Total Invoice between<br />  850-950 JD </p>
+                      </div>
+                    </div>
+                        <div class="col-xl-3 col-md-6 col-sm-12 d-flex align-items-stretch">
+                      <div class="icon-box mt-4 mt-xl-0 col-sm-12">
+
+                        <h1>25<i class="fa-solid fa-percent text-primary iconColor" style="margin-left:5px"></i></h1>
+                        <p>If Total Invoice <br /> 950 JD ></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>-->
+            <!-- End .content-->
+            <!--</div>
+            </div>--%>-->
+
+            <div class="row">
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <div class="content">
+                        <h3 style="font-style:italic; font-family:'Times New Roman'; text-align:center">Discount</h3>
+
+                        <div class="text-center">
+                            <a href="/Category/Categories" class="more-btn">Shop Now<i class="bx bx-chevron-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-8 col-md-12 col-sm-12">
+                    <div class="row icon-boxes d-flex justify-content-center">
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="icon-box mt-4 mt-xl-0">
+
+                                <h1>5<i class="fa-solid fa-percent text-primary iconColor" style="margin-left:5px"></i> </h1>
+                                <p>If Total Invoice between<br /> 455-689 JD</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="icon-box mt-4 mt-xl-0">
+
+                                <h1>10<i class="fa-solid fa-percent text-primary iconColor" style="margin-left:5px"></i></h1>
+                                <p>If Total Invoice between <br /> 690-849 JD</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="icon-box mt-4 mt-xl-0">
+                                <h1>15<i class="fa-solid fa-percent text-primary iconColor" style="margin-left:5px"></i></h1>
+                                <p>If Total Invoice between<br />  850-950 JD </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="icon-box mt-4 mt-xl-0">
+
+                                <h1>20<i class="fa-solid fa-percent text-primary iconColor" style="margin-left:5px"></i></h1>
+                                <p>If Total Invoice Greater Than <br /> 950 JD</p>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section><!-- End Why Us Section -->
+    <!-- ======= Counts Section ======= -->
+    <section id="counts" class="counts">
+        <div class="container">
+            <h2 style="color:#0A4438; text-align:center"> Free Delivery From 1000 JD</h2>
+        </div>
+    </section><!-- End Counts Section -->
+
+
+    <section id="services" class="services">
+        <div class="container">
+
+            <div class="section-title">
+                <h2>Categories</h2>
+            </div>
+            <div class="cards">
+                @{ 
+                    int x = 0;
+                    foreach (var item in Model)
+                    {
+                        if (x < 3)
+                        {
+                    <div class="card categoryCard">
+
+                        <div class="card-image">
+                            <img src="~/website/@item.CategoryImage" class="cateIMAGE" />
+                            <h5 class="text-center text-uppercase catename">@item.CategoryName</h5>
+
+                        </div>
+
+                        <div class="card-prices">
+
+                            <div class="price-sale">
+                                <a href="/Category/Products/@item.CategoryID" style="color:#E6E6E6">
+                                    Show Products
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>}
+                        else { break; }
+                    }
+                    }
+            </div>
+       
+
+
+
+
+            </div>
+
+        </div>
+    </section>
+
+
+
+
+    <section class=" page-section  aboutBA" id="about">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-lg-8 text-center mt-5">
+                    <h2 class="mt-0" style="color:whitesmoke">We've got what you need!</h2>
+                    <hr class="divider divider-light" />
+                    <p class="text-white-75 mb-4">
+                        Our store contains medical equipment and everything you need to take care of your health and the health of your loved ones <br />
+                        We hope to save you time, make your work easier, and beautify your trip.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services">
+        <div class="container">
+
+            <div class="section-title">
+                <h2>Services</h2>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+                    <div class="icon-box">
+                        <div class="icon"><i class="bi-gem fs-1"></i></div>
+                        <h4><a href="">Sturdy Themes</a></h4>
+                        <p>Our themes are updated regularly to keep them more trendy!</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
+                    <div class="icon-box">
+                        <div class="icon"><i class="bi-laptop fs-1"></i></div>
+                        <h4><a href="">Up to Date</a></h4>
+                        <p>All products are kept current to keep things modern</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
+                    <div class="icon-box">
+                        <div class="icon"><i class="bi-globe fs-1"></i></div>
+                        <h4><a href="">Ready to Publish</a></h4>
+                        <p>You can access on this site at anytime and anywhere</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
+                    <div class="icon-box">
+                        <div class="icon"><i class="bi-heart fs-1"></i></div>
+                        <h4><a href="">Made with Love</a></h4>
+                        <p>Every product on this site is made with love and care</p>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+
+        </div>
+    </section><!-- End Services Section -->
