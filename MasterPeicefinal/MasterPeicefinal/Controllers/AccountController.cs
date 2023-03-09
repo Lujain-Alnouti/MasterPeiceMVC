@@ -156,24 +156,25 @@ namespace MasterPeicefinal.Controllers
                
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email ,PhoneNumber=PhoneNumber};
                 var result = await UserManager.CreateAsync(user, model.Password);
-                Client client = new Client();
-                client.ClientName = Username;
-                client.Email = model.Email;
-                client.PhoneNumber = PhoneNumber;
                 string userID = user.Id;
-                client.AspUserID =userID;
-                db.Clients.Add(client);
-                db.SaveChanges();
+
+               
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
+                    Client client = new Client();
+                    client.ClientName = Username;
+                    client.Email = model.Email;
+                    client.PhoneNumber = PhoneNumber;
+                    client.AspUserID = userID;
+                    db.Clients.Add(client);
+                    db.SaveChanges();
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);

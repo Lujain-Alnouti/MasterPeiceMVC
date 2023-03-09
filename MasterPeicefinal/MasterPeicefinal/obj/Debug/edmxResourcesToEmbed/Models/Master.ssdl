@@ -109,6 +109,9 @@
     <Property Name="OrderDate" Type="date" />
     <Property Name="TotalPrice" Type="float" />
     <Property Name="OrderStatus" Type="bit" />
+    <Property Name="OrderTime" Type="nvarchar" MaxLength="100" />
+    <Property Name="Discount" Type="int" />
+    <Property Name="shipping" Type="int" />
   </EntityType>
   <EntityType Name="OrderDetails">
     <Key>
@@ -273,30 +276,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_OrderDetails_MainOrders">
-    <End Role="MainOrders" Type="Self.MainOrders" Multiplicity="1" />
-    <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="MainOrders">
-        <PropertyRef Name="OrderID" />
-      </Principal>
-      <Dependent Role="OrderDetails">
-        <PropertyRef Name="OrderID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_OrderDetails_Products">
-    <End Role="Products" Type="Self.Products" Multiplicity="1" />
-    <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Products">
-        <PropertyRef Name="ProductID" />
-      </Principal>
-      <Dependent Role="OrderDetails">
-        <PropertyRef Name="ProductID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Products_Categories">
     <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
     <End Role="Products" Type="Self.Products" Multiplicity="*" />
@@ -396,14 +375,6 @@
     <AssociationSet Name="FK_MainOrders_Client" Association="Self.FK_MainOrders_Client">
       <End Role="Client" EntitySet="Client" />
       <End Role="MainOrders" EntitySet="MainOrders" />
-    </AssociationSet>
-    <AssociationSet Name="FK_OrderDetails_MainOrders" Association="Self.FK_OrderDetails_MainOrders">
-      <End Role="MainOrders" EntitySet="MainOrders" />
-      <End Role="OrderDetails" EntitySet="OrderDetails" />
-    </AssociationSet>
-    <AssociationSet Name="FK_OrderDetails_Products" Association="Self.FK_OrderDetails_Products">
-      <End Role="Products" EntitySet="Products" />
-      <End Role="OrderDetails" EntitySet="OrderDetails" />
     </AssociationSet>
     <AssociationSet Name="FK_Products_Categories" Association="Self.FK_Products_Categories">
       <End Role="Categories" EntitySet="Categories" />

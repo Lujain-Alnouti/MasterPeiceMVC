@@ -26,6 +26,9 @@ namespace MasterPeicefinal.Models
         public Nullable<System.DateTime> OrderDate { get; set; }
         public Nullable<double> TotalPrice { get; set; }
         public Nullable<bool> OrderStatus { get; set; }
+        public string OrderTime { get; set; }
+        public Nullable<int> Discount { get; set; }
+        public Nullable<int> shipping { get; set; }
     
         public virtual Client Client { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -1,0 +1,312 @@
+﻿@model IEnumerable<MasterPeicefinal.Models.OrderDetail>
+
+@{
+    ViewBag.Title = "ProgressOrderDetails";
+}
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script src="https://kit.fontawesome.com/a8b56cb52b.js" crossorigin="anonymous"></script>
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+<style>
+    .IconColor1 {
+        color: #0A4438 !important;
+    }
+
+    .IconColor {
+        color: #169179 !important;
+    }
+
+    body {
+        margin-top: 20px;
+    }
+
+    .card-style1 {
+        box-shadow: 0px 0px 10px 0px rgb(89 75 128 / 9%);
+    }
+
+    .border-0 {
+        border: 0 !important;
+    }
+
+    .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        /*  width:60%;
+        margin-left:20%;*/
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid rgba(0,0,0,.125);
+        border-radius: 0.25rem;
+    }
+
+    section {
+        /*padding: 120px 0;*/
+        overflow: hidden;
+        /*background: #fff;*/
+    }
+
+    .mb-2-3, .my-2-3 {
+        margin-bottom: 2.3rem;
+    }
+
+    .section-title {
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        position: relative;
+        display: inline-block;
+    }
+
+    .text-primary {
+        color: #ceaa4d !important;
+    }
+
+    .text-secondary {
+        color: #15395A !important;
+    }
+
+    .font-weight-600 {
+        font-weight: 600;
+    }
+
+    .display-26 {
+        font-size: 1.3rem;
+    }
+
+    @@media screen and (min-width: 992px) {
+        .p-lg-7 {
+            padding: 4rem;
+        }
+    }
+
+    @@media screen and (min-width: 768px) {
+        .p-md-6 {
+            padding: 3.5rem;
+        }
+    }
+
+    @@media screen and (min-width: 576px) {
+        .p-sm-2-3 {
+            padding: 2.3rem;
+        }
+    }
+
+    .p-1-9 {
+        padding: 1.9rem;
+    }
+
+    .bg-secondary {
+        background: #0A4438 !important;
+    }
+
+    @@media screen and (min-width: 576px) {
+        .pe-sm-6, .px-sm-6 {
+            padding-right: 3.5rem;
+        }
+    }
+
+    @@media screen and (min-width: 576px) {
+        .ps-sm-6, .px-sm-6 {
+            padding-left: 3.5rem;
+        }
+    }
+
+    .pe-1-9, .px-1-9 {
+        padding-right: 1.9rem;
+    }
+
+    .ps-1-9, .px-1-9 {
+        padding-left: 1.9rem;
+    }
+
+    .pb-1-9, .py-1-9 {
+        padding-bottom: 1.9rem;
+    }
+
+    .pt-1-9, .py-1-9 {
+        padding-top: 1.9rem;
+    }
+
+    .mb-1-9, .my-1-9 {
+        margin-bottom: 1.9rem;
+    }
+
+    @@media (min-width: 992px) {
+        .d-lg-inline-block {
+            display: inline-block !important;
+        }
+    }
+
+    .rounded {
+        border-radius: 0.25rem !important;
+    }
+
+    .donebutton {
+        margin-left: 34%;
+        border: none;
+        outline: none;
+        background-color: #0A4438;
+        padding: 10px 20px;
+        font-size: 12px;
+        font-weight: 700;
+        color: #E6E6E6;
+        border-radius: 5px;
+        transition: all ease 0.1s;
+        box-shadow: 0px 5px 0px 0px #ABD7CE;
+        margin-bottom: 20px;
+    }
+
+        .donebutton:active {
+            color: #E6E6E6;
+            transform: translateY(5px);
+            box-shadow: 0px 0px 0px 0px #ABD7CE;
+        }
+
+    .carCon {
+        width: 35%;
+        margin-left: 32.5%;
+    }
+
+
+    @@media only screen and (min-device-width:0px) and (max-device-width:480px) {
+        .carCon {
+            width: 100%;
+            margin-left: 0%;
+        }
+
+        .donebutton {
+            margin-left: 25%;
+        }
+    }
+
+    @@media only screen and (min-device-width:481px) and (max-device-width:786px) {
+        .carCon {
+            width: 60%;
+            margin-left: 20%;
+        }
+
+        .donebutton {
+            margin-left: 34%;
+        }
+    }
+    .nname {
+        width: 100%;
+    }
+</style>
+<h2 style="text-align:center; margin-top:30px" class="IconColor1">Order Details</h2>
+<hr />
+
+<div class="container pt-4 px-4">
+ 
+
+<div class="row">
+                <div class="col-lg-12 mb-4 mb-sm-5">
+                    <div class="card card-style1 border-0">
+                        <div class="card-body p-1-9 p-sm-2-3 p-md-6 p-lg-7">
+                                <div class="row align-items-center">
+                                    @*<div class="col-lg-6 mb-4 mb-lg-0">
+            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="...">
+        </div>*@
+                                    @{ int x = 0;
+                                        foreach (var progressOrder in Model)
+                                        {
+                                            if (x == 0)
+                                            {
+                                                                        <div class="col-lg-12 px-xl-10">
+                                                                            <a class="btn btn-warning" href="/Home/UserProfile"><b>&lArr;</b></a>
+
+                                                                            <div class="carCon">
+
+                                                                                <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded nname">
+                                                                                    <h3 class="h2 text-white mb-0">@progressOrder.MainOrder.Client.ClientName</h3>
+                                                                                    <span class="text-primary">User</span>
+                                                                                </div>
+                                                                                <ul class="list-unstyled mb-1-9 nname text-center">
+
+                                                                                    <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Email:</span>@progressOrder.MainOrder.Client.Email</li>
+                                                                                    <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Phone Number:</span>@progressOrder.MainOrder.Client.PhoneNumber</li>
+                                                                                    <li class="mb-2 mb-xl-3 display-28">
+                                                                                        <span class="display-26 text-secondary me-2 font-weight-600">Order ID :</span>@ViewBag.orderid  &nbsp;
+                                                                                        <span class="display-26 text-secondary me-2 font-weight-600">Discount :</span> @progressOrder.MainOrder.Discount % &nbsp;
+
+                                                                                    </li>
+                                                                                    @*<li class="mb-2 mb-xl-3 display-28">
+                    <span class="display-26 text-secondary me-2 font-weight-600">Discount :</span> @progressOrder.MainOrder.Discount % &nbsp;
+                </li>*@
+                                                                                    <li class="mb-2 mb-xl-3 display-28">
+                                                                                        <span class="display-26 text-secondary me-2 font-weight-600">Shipping :</span>@progressOrder.MainOrder.shipping JD&nbsp;
+                                                                                    </li>
+
+                                                                                </ul>
+                                                                                @if (User.IsInRole("Admin"))
+                                                                                {
+                                                                                    <a class="btn donebutton"> Done Order </a>}
+
+                                                                            </div>
+                                                                        </div>
+                                                <hr />
+                                                    x++;
+                                                }
+                                            }
+                                        }
+                                            @*<div>
+                    <input type="text" class="form-control" /> <a class="btn btn-primary">Search</a>
+                </div>*@
+                                          
+                                            <div class="col-lg-12 mb-4 mb-sm-5">
+                                                <div>
+                                                    <span class="section-title text-primary mb-3 mb-sm-4">Orders Information</span>
+
+                                                </div>
+                                                <div class="table-responsive">
+                                                    <table class="table text-start align-middle table-bordered table-hover mb-0 ">
+
+                                                        <tr class="text-dark">
+                                                            <th scope="col">ID</th>
+                                                            <th scope="col">Product Image</th>
+                                                            <th scope="col">Product Name</th>
+                                                            <th scope="col">Price</th>
+                                                            <th scope="col">Quantity</th>
+                                                            <th scope="col">Total Price</th>
+                                                          
+                                                            @*<th scope="col">Description</th>*@
+                                                            @*<th></th>*@
+
+                                                        </tr>
+
+                                                        @foreach (var progressOrder1 in Model)
+                                                            {
+
+                                                                <tr>
+                                                                    <td>@progressOrder1.ProductID</td>
+                                                                    <td><img src="~/website/@progressOrder1.Product.ProductImage" width="80" height="80" /></td>
+                                                                    <td>@progressOrder1.Product.ProductName</td>
+                                                                    <td>@progressOrder1.Product.ProductPrice</td>
+                                                                    <td>@progressOrder1.Quantity</td>
+                                                                    <td>@progressOrder1.Price</td>
+                                                                    @*<td>XXXXXXXXXXXXX</td>*@
+
+                                                                    @*   <td><a class="btn btn-warning" href="~/AdminDashboard/DetailsUsers">Details</a></td>*@
+                                                                </tr>
+                                                                }
+                                                           
+                                                            </table>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+</div>
+
+

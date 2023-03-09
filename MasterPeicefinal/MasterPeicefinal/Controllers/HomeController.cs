@@ -34,6 +34,11 @@ namespace MasterPeicefinal.Controllers
         public ActionResult UserProfile()
         {
             var user = User.Identity.GetUserId();
+            var clientID = db.Clients.FirstOrDefault(c => c.AspUserID == user).ClientID;
+            ViewBag.ProgressOrder = db.MainOrders.Where(a => a.OrderStatus == false && a.UserID==clientID).ToList();
+            ViewBag.DoneOrder = db.MainOrders.Where(a => a.OrderStatus == true && a.UserID == clientID).ToList();
+
+           
             return View(db.Clients.Where(a=>a.AspUserID==user).ToList());
         }
     }

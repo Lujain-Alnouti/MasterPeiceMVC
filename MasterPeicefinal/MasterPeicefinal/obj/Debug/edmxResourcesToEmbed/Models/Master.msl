@@ -110,6 +110,9 @@
     <EntitySetMapping Name="MainOrders">
       <EntityTypeMapping TypeName="MasterPeiceModel.MainOrder">
         <MappingFragment StoreEntitySet="MainOrders">
+          <ScalarProperty Name="shipping" ColumnName="shipping" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="OrderTime" ColumnName="OrderTime" />
           <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
           <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
           <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />

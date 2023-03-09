@@ -6,19 +6,19 @@
     <edmx:Diagrams>
       <Diagram DiagramId="9a9636b3a68240b5976f19ddf8c29123" Name="Diagram1">
         <EntityTypeShape EntityType="MasterPeiceModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="MasterPeiceModel.AspNetRole" Width="1.5" PointX="0.75" PointY="5.5" />
-        <EntityTypeShape EntityType="MasterPeiceModel.AspNetUserClaim" Width="1.5" PointX="3" PointY="6.5" />
-        <EntityTypeShape EntityType="MasterPeiceModel.AspNetUserLogin" Width="1.5" PointX="3" PointY="19" />
-        <EntityTypeShape EntityType="MasterPeiceModel.AspNetUserRole" Width="1.5" PointX="3" PointY="9.25" />
-        <EntityTypeShape EntityType="MasterPeiceModel.AspNetUser" Width="1.5" PointX="0.75" PointY="8.125" />
-        <EntityTypeShape EntityType="MasterPeiceModel.Cart" Width="1.5" PointX="3" PointY="16.125" />
-        <EntityTypeShape EntityType="MasterPeiceModel.Category" Width="1.5" PointX="9" PointY="5.375" />
-        <EntityTypeShape EntityType="MasterPeiceModel.City" Width="1.5" PointX="3.75" PointY="12.5" />
-        <EntityTypeShape EntityType="MasterPeiceModel.Client" Width="1.5" PointX="6" PointY="8.625" />
-        <EntityTypeShape EntityType="MasterPeiceModel.MainOrder" Width="1.5" PointX="8.25" PointY="9" />
-        <EntityTypeShape EntityType="MasterPeiceModel.OrderDetail" Width="1.5" PointX="13.5" PointY="9" />
-        <EntityTypeShape EntityType="MasterPeiceModel.Product" Width="1.5" PointX="11.25" PointY="4.75" />
-        <EntityTypeShape EntityType="MasterPeiceModel.Rating" Width="1.5" PointX="10.5" PointY="8.75" />
+        <EntityTypeShape EntityType="MasterPeiceModel.AspNetRole" Width="1.5" PointX="0.75" PointY="5.625" />
+        <EntityTypeShape EntityType="MasterPeiceModel.AspNetUserClaim" Width="1.5" PointX="3" PointY="18" />
+        <EntityTypeShape EntityType="MasterPeiceModel.AspNetUserLogin" Width="1.5" PointX="3" PointY="20.75" />
+        <EntityTypeShape EntityType="MasterPeiceModel.AspNetUserRole" Width="1.5" PointX="3" PointY="6.375" />
+        <EntityTypeShape EntityType="MasterPeiceModel.AspNetUser" Width="1.5" PointX="0.75" PointY="8.25" />
+        <EntityTypeShape EntityType="MasterPeiceModel.Cart" Width="1.5" PointX="3" PointY="9.25" />
+        <EntityTypeShape EntityType="MasterPeiceModel.Category" Width="1.5" PointX="1.5" PointY="23.5" />
+        <EntityTypeShape EntityType="MasterPeiceModel.City" Width="1.5" PointX="3.75" PointY="12.625" />
+        <EntityTypeShape EntityType="MasterPeiceModel.Client" Width="1.5" PointX="6" PointY="8.75" />
+        <EntityTypeShape EntityType="MasterPeiceModel.MainOrder" Width="1.5" PointX="8.25" PointY="9.125" />
+        <EntityTypeShape EntityType="MasterPeiceModel.OrderDetail" Width="1.5" PointX="13.5" PointY="9.125" />
+        <EntityTypeShape EntityType="MasterPeiceModel.Product" Width="1.5" PointX="0.75" PointY="13.75" />
+        <EntityTypeShape EntityType="MasterPeiceModel.Rating" Width="1.5" PointX="10.5" PointY="8.875" />
         <EntityTypeShape EntityType="MasterPeiceModel.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" />
         <AssociationConnector Association="MasterPeiceModel.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" />
         <AssociationConnector Association="MasterPeiceModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
@@ -26,6 +26,7 @@
         <AssociationConnector Association="MasterPeiceModel.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="MasterPeiceModel.FK_Carts_AspNetUsers" />
         <AssociationConnector Association="MasterPeiceModel.FK_Client_AspNetUsers" />
+        <AssociationConnector Association="MasterPeiceModel.FK_Carts_Products" />
         <AssociationConnector Association="MasterPeiceModel.FK_Products_Categories" />
         <AssociationConnector Association="MasterPeiceModel.FK_Client_Cities" />
         <AssociationConnector Association="MasterPeiceModel.FK_MainOrders_Client" />
@@ -34,7 +35,6 @@
         <AssociationConnector Association="MasterPeiceModel.FK_Ratings_MainOrders" />
         <AssociationConnector Association="MasterPeiceModel.FK_OrderDetails_Products" />
         <AssociationConnector Association="MasterPeiceModel.FK_Ratings_Products" />
-        <AssociationConnector Association="MasterPeiceModel.FK_Carts_Products" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

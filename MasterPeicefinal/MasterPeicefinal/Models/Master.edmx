@@ -114,6 +114,9 @@
           <Property Name="OrderDate" Type="date" />
           <Property Name="TotalPrice" Type="float" />
           <Property Name="OrderStatus" Type="bit" />
+          <Property Name="OrderTime" Type="nvarchar" MaxLength="100" />
+          <Property Name="Discount" Type="int" />
+          <Property Name="shipping" Type="int" />
         </EntityType>
         <EntityType Name="OrderDetails">
           <Key>
@@ -278,30 +281,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_OrderDetails_MainOrders">
-          <End Role="MainOrders" Type="Self.MainOrders" Multiplicity="1" />
-          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MainOrders">
-              <PropertyRef Name="OrderID" />
-            </Principal>
-            <Dependent Role="OrderDetails">
-              <PropertyRef Name="OrderID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_OrderDetails_Products">
-          <End Role="Products" Type="Self.Products" Multiplicity="1" />
-          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Products">
-              <PropertyRef Name="ProductID" />
-            </Principal>
-            <Dependent Role="OrderDetails">
-              <PropertyRef Name="ProductID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Products_Categories">
           <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
           <End Role="Products" Type="Self.Products" Multiplicity="*" />
@@ -402,14 +381,6 @@
             <End Role="Client" EntitySet="Client" />
             <End Role="MainOrders" EntitySet="MainOrders" />
           </AssociationSet>
-          <AssociationSet Name="FK_OrderDetails_MainOrders" Association="Self.FK_OrderDetails_MainOrders">
-            <End Role="MainOrders" EntitySet="MainOrders" />
-            <End Role="OrderDetails" EntitySet="OrderDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OrderDetails_Products" Association="Self.FK_OrderDetails_Products">
-            <End Role="Products" EntitySet="Products" />
-            <End Role="OrderDetails" EntitySet="OrderDetails" />
-          </AssociationSet>
           <AssociationSet Name="FK_Products_Categories" Association="Self.FK_Products_Categories">
             <End Role="Categories" EntitySet="Categories" />
             <End Role="Products" EntitySet="Products" />
@@ -471,6 +442,10 @@
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="Client" EntitySet="Clients" />
           </AssociationSet>
+          <AssociationSet Name="FK_Carts_Products" Association="MasterPeiceModel.FK_Carts_Products">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Cart" EntitySet="Carts" />
+          </AssociationSet>
           <AssociationSet Name="FK_Products_Categories" Association="MasterPeiceModel.FK_Products_Categories">
             <End Role="Category" EntitySet="Categories" />
             <End Role="Product" EntitySet="Products" />
@@ -502,10 +477,6 @@
           <AssociationSet Name="FK_Ratings_Products" Association="MasterPeiceModel.FK_Ratings_Products">
             <End Role="Product" EntitySet="Products" />
             <End Role="Rating" EntitySet="Ratings" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Carts_Products" Association="MasterPeiceModel.FK_Carts_Products">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="Cart" EntitySet="Carts" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="C__MigrationHistory">
@@ -638,6 +609,9 @@
           <NavigationProperty Name="Client" Relationship="MasterPeiceModel.FK_MainOrders_Client" FromRole="MainOrder" ToRole="Client" />
           <NavigationProperty Name="OrderDetails" Relationship="MasterPeiceModel.FK_OrderDetails_MainOrders" FromRole="MainOrder" ToRole="OrderDetail" />
           <NavigationProperty Name="Ratings" Relationship="MasterPeiceModel.FK_Ratings_MainOrders" FromRole="MainOrder" ToRole="Rating" />
+          <Property Name="OrderTime" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Discount" Type="Int32" />
+          <Property Name="shipping" Type="Int32" />
         </EntityType>
         <EntityType Name="OrderDetail">
           <Key>
@@ -665,10 +639,10 @@
           <Property Name="Desc2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="ProductPrice" Type="Double" />
           <Property Name="TotalQuantity" Type="Int32" />
+          <NavigationProperty Name="Carts" Relationship="MasterPeiceModel.FK_Carts_Products" FromRole="Product" ToRole="Cart" />
           <NavigationProperty Name="Category" Relationship="MasterPeiceModel.FK_Products_Categories" FromRole="Product" ToRole="Category" />
           <NavigationProperty Name="OrderDetails" Relationship="MasterPeiceModel.FK_OrderDetails_Products" FromRole="Product" ToRole="OrderDetail" />
           <NavigationProperty Name="Ratings" Relationship="MasterPeiceModel.FK_Ratings_Products" FromRole="Product" ToRole="Rating" />
-          <NavigationProperty Name="Carts" Relationship="MasterPeiceModel.FK_Carts_Products" FromRole="Product" ToRole="Cart" />
         </EntityType>
         <EntityType Name="Rating">
           <Key>
@@ -775,6 +749,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Carts_Products">
+          <End Type="MasterPeiceModel.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="MasterPeiceModel.Cart" Role="Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Products_Categories">
           <End Type="MasterPeiceModel.Category" Role="Category" Multiplicity="0..1" />
           <End Type="MasterPeiceModel.Product" Role="Product" Multiplicity="*" />
@@ -871,19 +857,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Carts_Products">
-          <End Type="MasterPeiceModel.Product" Role="Product" Multiplicity="0..1" />
-          <End Type="MasterPeiceModel.Cart" Role="Cart" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="ProductID" />
-            </Principal>
-            <Dependent Role="Cart">
-              <PropertyRef Name="ProductID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -998,6 +972,9 @@
           <EntitySetMapping Name="MainOrders">
             <EntityTypeMapping TypeName="MasterPeiceModel.MainOrder">
               <MappingFragment StoreEntitySet="MainOrders">
+                <ScalarProperty Name="shipping" ColumnName="shipping" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="OrderTime" ColumnName="OrderTime" />
                 <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
                 <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
                 <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />

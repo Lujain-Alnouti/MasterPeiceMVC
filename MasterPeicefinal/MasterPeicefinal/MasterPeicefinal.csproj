@@ -187,6 +187,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OrderDetailsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -337,6 +338,9 @@
     <Content Include="Views\Category\Cart.cshtml" />
     <Content Include="Views\Home\UserProfile.cshtml" />
     <Content Include="Views\Category\CheckOut.cshtml" />
+    <Content Include="Views\OrderDetails\ProgressOrderDetails.cshtml" />
+    <Content Include="Views\OrderDetails\DoneOrderDetails.cshtml" />
+    <Content Include="Views\OrderDetails\Rating.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -30,22 +30,29 @@ namespace MasterPeicefinal.Controllers
         {
             return View(db.Products.Where(a => a.ProductID == id).ToList());
         }
+
+
+
         public ActionResult AddProduct(int? productid, int Quantity)
-        {
-            foreach(var item in db.Carts.ToList()) {
+        { var useruu = User.Identity.GetUserId();
+            foreach (var item in (db.Carts.Where(a => a.ProductID == productid && a.UserID == useruu).ToList())) {
                 //item.UserID == User.Identity.GetUserId()
-                if (item.ProductID == productid && item.UserID== User.Identity.GetUserId())
-                {
-                    int qq =(int) db.Carts.FirstOrDefault(a => a.ProductID == productid).Quantity;
+                //if (item.ProductID == productid && item.UserID== useruu)
+                //{
+                int CartID1 =item.CartID;
+
+
+                int qq = (int)item.Quantity;
+                   
                     int newQ = qq + Quantity;
-                    Cart cart1 = db.Carts.Find(productid);
+                    Cart cart1 = db.Carts.Find(CartID1);
                     float x1 = (float)db.Products.FirstOrDefault(a => a.ProductID == productid).ProductPrice;
                     float total1 = newQ * x1;
                     cart1.Price = (float)total1;
                     cart1.Quantity = newQ;
                     db.SaveChanges();
-                    return RedirectToAction("ProductDetails");
-                }
+                    return RedirectToAction("ProductDetails/"+productid);
+                //}
 
             }
 
@@ -60,7 +67,7 @@ namespace MasterPeicefinal.Controllers
 
             db.Carts.Add(cart);
             db.SaveChanges();
-            return RedirectToAction("ProductDetails");
+            return RedirectToAction("ProductDetails/"+productid);
         }
 
 
@@ -141,9 +148,77 @@ namespace MasterPeicefinal.Controllers
         public ActionResult CheckOut()
         {
             ViewBag.Cities = db.Cities.ToList();
+           
             //var user = User.Identity.GetUserId();   
             var user = User.Identity.GetUserId();
-    
+            ViewBag.cart = db.Carts.Where(a => a.UserID == user).ToList();
+            int count = db.Carts.Where(a => a.UserID == user).Count();
+            ViewBag.Usercity = db.Clients.FirstOrDefault(a => a.AspUserID == user).City;
+            ViewBag.Num = count;
+            float priceafter = 0;
+            if (count > 0)
+            {
+                float totalPrice = (float)db.Carts.Where(a => a.UserID == user).Select(a => a.Price).Sum();
+                ViewBag.TotalPrice = totalPrice;
+                ViewBag.Discount = "0";
+                int Dis = 0;
+
+
+
+
+                if (totalPrice >= 455 && totalPrice <= 689)
+                {
+                    Dis = 5;
+                    ViewBag.Discount = "5";
+                    //priceafter = totalPrice - (totalPrice * (10 / 100));
+                    float sub = totalPrice * ((float)5.0 / (float)100.0);
+                    priceafter = totalPrice - sub;
+
+
+                }
+                else if (totalPrice >= 690 && totalPrice <= 849)
+                {
+                    Dis = 10;
+                    ViewBag.Discount = "10";
+                    //priceafter = totalPrice - (totalPrice * (15 / 100));
+                    float sub = totalPrice * ((float)10.0 / (float)100.0);
+                    priceafter = totalPrice - sub;
+
+                }
+                else if (totalPrice >= 850 && totalPrice <= 949)
+                {
+                    Dis = 15;
+                    ViewBag.Discount = "15";
+                    float sub = totalPrice * ((float)15.0 / (float)100.0);
+                    priceafter = totalPrice - sub;
+
+                }
+                else if (totalPrice >= 950)
+                {
+                    ViewBag.Discount = "20";
+                    Dis = 20;
+                    //priceafter = totalPrice - (totalPrice * (25 / 100));
+                    float sub = totalPrice * ((float)20.0 / (float)100.0);
+                    priceafter = totalPrice - sub;
+
+                }
+
+                if (totalPrice > 1500)
+                {
+
+                    ViewBag.shipping = 0;
+                }
+                else
+                {
+                    priceafter += 10;
+                    ViewBag.shipping = 10;
+                }
+                ViewBag.AfterPrice = priceafter;
+                Session["FinalTotal"] = priceafter;
+                Session["Discounts"] = Dis;
+                Session["Shipping"] = ViewBag.shipping;
+            }
+
             return View(db.Clients.Where(a => a.AspUserID == user).ToList());
         }
 
@@ -158,23 +233,40 @@ namespace MasterPeicefinal.Controllers
             client.Email = Email;
             client.PhoneNumber = Phone;
             db.SaveChanges();
+            DateTime orderdate = DateTime.Now.Date;
+            string ordertime = DateTime.Now.ToString("hh:mm:ss");
 
             MainOrder mainorder = new MainOrder();
             mainorder.OrderStatus = false;
-            mainorder.OrderDate = DateTime.Now.Date;
+            mainorder.OrderDate = orderdate;
+            mainorder.OrderTime = ordertime;
             mainorder.TotalPrice = (float)Session["FinalTotal"];
-            mainorder.UserID = db.Clients.FirstOrDefault(a => a.AspUserID == User.Identity.GetUserId()).ClientID;
+            mainorder.UserID =ClientIID;
+            mainorder.shipping =(int)Session["Shipping"];
+            mainorder.Discount = Convert.ToInt32(Session["Discounts"]);
             db.MainOrders.Add(mainorder);
             db.SaveChanges();
-            var uu= db.Clients.FirstOrDefault(a => a.AspUserID == User.Identity.GetUserId()).ClientID;
-            var cart = db.Carts.Where(a => a.UserID == User.Identity.GetUserId()).ToList();
-            foreach(var item in cart)
+            var uu= db.Clients.FirstOrDefault(a => a.AspUserID == uuser).ClientID;
+            var cart = db.Carts.Where(a => a.UserID == uuser).ToList();
+            var ooor = db.MainOrders.Where( a => a.OrderDate == orderdate &&  a.OrderTime == ordertime ).ToList();
+            int orderID = 0;
+            foreach (var ii in ooor)
+            {
+                orderID = ii.OrderID;
+              
+            }
+            foreach (var item in cart)
             {
                 OrderDetail details = new OrderDetail();
-                DateTime dd = DateTime.Now.Date;
+                //int orderID = db.MainOrders.FirstOrDefault(a => a.OrderDate == orderdate).OrderID;
+                DateTime dd = DateTime.Now;
                 if (item.UserID == User.Identity.GetUserId())
                 {
-                    details.OrderID = db.MainOrders.FirstOrDefault(a => a.OrderDate == dd).OrderID;
+                    
+                        details.OrderID = orderID;
+                    
+                    
+                 
                     details.ProductID =(int)item.ProductID;
                     details.Quantity = (int)item.Quantity;
                     details.Price = (float)item.Price;
@@ -186,20 +278,31 @@ namespace MasterPeicefinal.Controllers
                 
 
             }
-            //var user = User.Identity.GetUserId();   
-            var user = User.Identity.GetUserId();
+            foreach (var itemm in db.Carts.Where(a => a.UserID == uuser).ToList())
+            {
+                Cart cart2 = db.Carts.FirstOrDefault(a => a.UserID == uuser);
+                db.Carts.Remove(cart2);
+                db.SaveChanges();
+            }
 
-            return RedirectToAction("Category");
+            return RedirectToAction("Categories");
         }
 
 
         public ActionResult DeleteFromCart(int? id)
         {
-            //var user = User.Identity.GetUserId();   
+            var user = User.Identity.GetUserId();
+            var users = db.Carts.Where(a => a.ProductID == id && a.UserID == user).ToList();
+            int cartiid = 0;
+            foreach(var yy in users)
+            {
+                cartiid = (int)yy.CartID;
+
+            }
             if (id != null)
             {
-                Cart cart = db.Carts.FirstOrDefault(a=>a.ProductID==id);
-                db.Carts.Remove(cart);
+                Cart cart = db.Carts.Find(cartiid);
+                    db.Carts.Remove(cart);
                 db.SaveChanges();
                 return RedirectToAction("Cart");
             }
