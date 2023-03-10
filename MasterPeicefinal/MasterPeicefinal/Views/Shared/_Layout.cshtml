@@ -68,11 +68,17 @@
                     @*<li>@Html.ActionLink("Home", "Index", "Home", new { @class = "nav-link scrollto " })</li>*@
                     <li><a class="nav-link scrollto " href="/Home/Index">Home</a></li>
                     <li><a class="nav-link scrollto " href="/Category/Categories">Category</a></li>
-                    @if (User.Identity.IsAuthenticated)
+                    @if(User.IsInRole("Admin"))
+                    {
+                        <li><a class="nav-link scrollto" href="/AdminDashBoard/Users">Dashboard</a></li>
+
+                    }
+                    else if (User.Identity.IsAuthenticated)
                     {
                         <li><a class="nav-link scrollto" href="/Home/UserProfile">Profile</a></li>
 
                     }
+
                     <li>  <a class="nav-link scrollto" href="/Home/About">About</a></li>
 
                     <li>
@@ -84,8 +90,8 @@
                         using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right nav-link" }))
                         {
                             @Html.AntiForgeryToken()
-                <li><a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link scrollto " style="margin-left:15px;">Logout</a></li>
-                           
+                            <li><a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link scrollto " style="margin-left:15px;">Logout</a></li>
+
                         }
                     }
 
@@ -97,7 +103,7 @@
                         <li>
                             <a class="nav-link scrollto" href="/Account/Register">Register</a>
                         </li>
-}
+                    }
 
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>

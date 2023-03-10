@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace MasterPeicefinal.Controllers
 {
-    
+
     public class CategoryController : Controller
     {
         // GET: Category
@@ -22,8 +22,8 @@ namespace MasterPeicefinal.Controllers
         public ActionResult Products(int? id)
         {
             ViewBag.categ = db.Categories.FirstOrDefault(a => a.CategoryID == id).CategoryName;
-            
-            return View(db.Products.Where(a=>a.CateID==id).ToList());
+
+            return View(db.Products.Where(a => a.CateID == id).ToList());
         }
 
         public ActionResult ProductDetails(int? id)
@@ -32,6 +32,7 @@ namespace MasterPeicefinal.Controllers
         }
 
 
+        //[Authorize]
 
         public ActionResult AddProduct(int? productid, int Quantity)
         { var useruu = User.Identity.GetUserId();

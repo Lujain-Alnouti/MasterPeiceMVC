@@ -1,0 +1,324 @@
+﻿@model MasterPeicefinal.Models.Product
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_AdminSideBar.cshtml";
+}
+
+@*<h2>Delete</h2>
+
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Product</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ProductName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ProductImage)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ProductImage)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Desc1)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Desc1)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Desc2)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Desc2)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ProductPrice)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ProductPrice)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TotalQuantity)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TotalQuantity)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Category.CategoryName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Category.CategoryName)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>*@
+
+
+
+<style>
+
+
+    .editForm {
+        width: 50%;
+        margin-left: 25%;
+        margin-top: 30px;
+        margin-bottom: 50px;
+        background-color: #0A4438;
+        color: white;
+        border-radius: 30px;
+    }
+
+
+    .IconColor1 {
+        font-family: 'Times New Roman';
+        color: #0A4438 !important;
+    }
+
+    .IconColor {
+        color: #169179 !important;
+    }
+
+    .inputDIV {
+        width: 80%;
+    }
+
+    .form-group {
+        padding: 20px;
+    }
+
+    .cateIMG {
+        margin-top: 20px;
+        padding-top: 30px;
+        width: 60%;
+        margin-left: 20%;
+    }
+
+    .form-control {
+        margin-top: 15px;
+    }
+
+    /* .form-control-file {
+            margin-left: 25px;
+        }*/
+
+    .editCont {
+        padding-top: 25px;
+        width: 80%;
+        margin-left: 10%;
+    }
+
+    .buttonx {
+        font-size: 15px;
+        color: #0A4438;
+        background-color: #E6E6E6;
+        border-radius: 15px;
+    }
+
+    .btnDIV {
+        padding-bottom: 30px;
+        padding-top: 30px;
+        width: 49%;
+        margin-left: 29%;
+    }
+
+    .cateName {
+        margin-left: 35px;
+        margin-top: 50px;
+    }
+
+    .form-control-file {
+        margin-left: 20px;
+        /*        margin-top: 15px;
+    */
+    }
+
+    @@media only screen and (min-device-width:0px) and (max-device-width:480px) {
+        .editCont {
+            padding-top: 25px;
+            width: 100%;
+            margin-left: unset;
+        }
+
+        .editForm {
+            width: 100%;
+            margin-left: unset;
+            margin-top: 30px;
+            background-color: #0A4438;
+            color: white;
+            border-radius: 30px;
+        }
+
+        .btnDIV {
+            padding-bottom: 30px;
+            padding-top: 30px;
+            width: 83%;
+            margin-left: 8%;
+        }
+
+        .cateIMG {
+            margin-top: 20px;
+            padding-top: 30px;
+            width: 80%;
+            margin-left: 10%;
+        }
+
+        .cateName {
+            margin-left: unset;
+            margin-top: unset;
+            font-size: 15px;
+            text-align: center;
+        }
+
+        .form-control-file {
+            margin-left: unset;
+            margin-top: 15px;
+        }
+    }
+
+    @@media only screen and (min-device-width:481px) and (max-device-width:786px) {
+        .form-group {
+            padding: 20px;
+            margin-left: 55px;
+        }
+
+        .editCont {
+            padding-top: 25px;
+            width: 100%;
+            margin-left: unset;
+        }
+
+        .editForm {
+            width: 80%;
+            margin-left: 10%;
+            margin-top: 30px;
+            background-color: #0A4438;
+            color: white;
+            border-radius: 30px;
+        }
+
+        .btnDIV {
+            padding-bottom: 30px;
+            padding-top: 30px;
+            width: 39%;
+            margin-left: 30%;
+        }
+
+        .cateIMG {
+            margin-top: 20px;
+            padding-top: 30px;
+            width: 60%;
+            margin-left: 12%;
+        }
+
+        .cateName {
+            margin-left: unset;
+            margin-top: unset;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .form-control-file {
+            margin-left: 48px;
+            margin-top: 15px;
+        }
+    }
+</style>
+<h2 style="text-align:center; margin-top:25px" class="IconColor1">Delete Product</h2><hr />
+<div class="container-fluid pt-4 px-4">
+    @if (Session["ErrorMessage"]!= null)
+    {
+    <h4 class="text-center text-danger">@Session["ErrorMessage"].ToString()</h4>}
+    <span class="IconColor cateName">Product Name : @ViewBag.name1 </span>
+
+    <div class="editForm">
+        <div class="editCont">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Product Name :</label>
+                <input type="text" class="form-control inputDIV" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="@Model.ProductName" readonly>
+            </div>
+            <div class="form-group">
+                <label for="desc">Product Description (breif) :</label>
+                <p cols="8" rows="4" class="form-control inputDIV">@Model.Desc1</p>
+            </div>
+            <div class="form-group">
+                <label for="desc">Product Description (details) :</label>
+                <p cols="8" rows="4" class="form-control inputDIV">@Model.Desc2</p>
+            </div>
+            <div class="row">
+                <div class="form-group col-lg-4 col-md-4 col-sm-12">
+                    <label for="price">Price:</label>
+                    <p type="number" class="form-control inputDIV">@Model.ProductPrice</p>
+                </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-12">
+                    <label for="price">Category:</label>
+                    <div class="form-control" style="border-radius:5px;">
+                        <span>@Model.Category.CategoryName</span>
+
+                    </div>
+                </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-12">
+                    <label for="price">Quantity:</label>
+                    <p type="number" class="form-control inputDIV">@Model.TotalQuantity</p>
+                </div>
+                @*<div class="dropdown" style="display:inline-block; margin-left:50px">
+                <button class="btn  btn-default dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    Category
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="#">Beds</a></li>
+                    <li><a class="dropdown-item" href="#">Devices</a></li>
+                    <li><a class="dropdown-item" href="#">Machine</a></li>
+                </ul>
+            </div>*@
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlFile1">Product Image:</label>
+                @*<input type="file" class="form-control-file" id="exampleFormControlFile1" accept="image/*">*@
+                <br />
+                <img src="~/website/@Model.ProductImage" class="cateIMG" />
+
+            </div>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+        <div class="form-actions btnDIV">
+            <input type="submit" value="Delete" class="btn buttonx" />
+            &nbsp; <a class="btn buttonx" href="~/Products/Index">Show Products</a>
+        </div>
+            }
+           
+        </div>
+
+
+    </div>
+</div>
+
+

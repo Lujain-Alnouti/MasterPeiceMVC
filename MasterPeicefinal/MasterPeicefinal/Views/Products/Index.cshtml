@@ -1,0 +1,280 @@
+﻿@model IEnumerable<MasterPeicefinal.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminSideBar.cshtml";
+}
+
+@*<h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductImage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Desc1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Desc2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalQuantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category.CategoryName)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductImage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Desc1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Desc2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalQuantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.CategoryName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.ProductID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.ProductID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.ProductID })
+            </td>
+        </tr>
+    }
+
+    </table>*@
+
+
+
+<style>
+    .tab {
+        width: 90%;
+        margin-left: 5%;
+    }
+
+    .button {
+        position: relative;
+        display: inline-block;
+        margin: 15px;
+        padding: 5px 10px;
+        text-align: center;
+        font-size: 15px;
+        letter-spacing: 1px;
+        text-decoration: none;
+        color: #0A4438;
+        background: transparent;
+        cursor: pointer;
+        transition: ease-out 0.5s;
+        border: 2px solid #0A4438;
+        border-radius: 10px;
+        box-shadow: inset 0 0 0 0 #0A4438;
+    }
+
+        .button:hover {
+            color: white;
+            box-shadow: inset 0 -100px 0 0 #0A4438;
+        }
+
+        .button:active {
+            transform: scale(0.9);
+        }
+
+    .IconColor1 {
+        font-family: 'Times New Roman';
+        color: #0A4438 !important;
+    }
+
+    .IconColor {
+        color: #169179 !important;
+    }
+
+    .card {
+        width: 70%;
+        margin-left: 15%;
+        height: 200px;
+        padding: .8em;
+        background: #f5f5f5;
+        position: relative;
+        overflow: visible;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    }
+
+    .card-img {
+        background-color: #0A4438;
+        height: 90px;
+        width: 100%;
+        border-radius: .5rem;
+        transition: .3s ease;
+    }
+
+    .card-info {
+        padding-top: 10%;
+    }
+
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .card-footer {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 10px;
+        border-top: 1px solid #ddd;
+    }
+
+    /*Text*/
+    .text-title {
+        font-weight: 900;
+        font-size: 1.2em;
+        line-height: 1.5;
+    }
+
+    .text-body {
+        font-size: .9em;
+        padding-bottom: 10px;
+    }
+
+    /*Button*/
+    .card-button {
+        border: 1px solid #252525;
+        display: flex;
+        padding: .3em;
+        cursor: pointer;
+        border-radius: 50px;
+        transition: .3s ease-in-out;
+    }
+
+    /*Hover*/
+    .card-img:hover {
+        transform: translateY(-25%);
+        box-shadow: rgba(226, 196, 63, 0.25) 0px 13px 47px -5px, rgba(180, 71, 71, 0.3) 0px 8px 16px -8px;
+    }
+
+    .card-button:hover {
+        border: 1px solid #ffcaa6;
+        background-color: #ffcaa6;
+    }
+
+    .textinfo {
+        color: #E6E6E6;
+        text-align: center;
+        font-size: 25px;
+        padding: 25px;
+    }
+
+    @@media only screen and (min-device-width:0px) and (max-device-width:480px) {
+        .card {
+            margin-bottom: 20px;
+        }
+    }
+</style>
+
+<h2 style="text-align:center; margin-top:10px" class="IconColor1">Product</h2>
+<hr />
+<div class="container-fluid pt-4 px-4">
+
+    <div class="row">
+        <div class="col-lg-3 col-sm-0 col-md-0">
+
+        </div>
+        <div class="col-lg-3 col-sm-12 col-md-6">
+            <div class="card">
+                <a href="/Categories/Index"><div class="card-img textinfo">@ViewBag.categoryCount</div></a>
+                <div class="card-info">
+                    <p class="text-title text-center">Categories</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-sm-12 col-md-6">
+            <div class="card">
+                <a href="/Products/Index"><div class="card-img textinfo">@ViewBag.ProductCount</div></a>
+                <div class="card-info">
+                    <p class="text-title text-center">Products</p>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-lg-3 col-sm-0 col-md-0">
+
+        </div>
+
+    </div>
+</div>
+
+<div class="container-fluid pt-4 px-4">
+    <a class="btn button" href="~/Products/Create">Add Product</a>
+    <div class="table-responsive">
+        <table class="table text-start align-middle table-bordered table-hover mb-5">
+
+            <tr class="text-dark">
+                <th scope="col">ID</th>
+                <th scope="col">Product</th>
+                <th scope="col">Product Image</th>
+                <th scope="col">Category</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Description</th>
+                <th scope="col">Description2</th>
+
+                <th></th>
+
+
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ProductID</td>
+                    <td>@item.ProductName</td>
+                    <td><img src="~/website/@item.ProductImage" width="150" height="100" /></td>
+                    <td>@item.Category.CategoryName</td>
+                    <td>@item.ProductPrice <b>JD</b></td>
+                    <td>@item.TotalQuantity</td>
+
+                    <td style="overflow:auto; width:200px;"><p style="width: 200px; height: 100px;">@item.Desc1</p></td>
+                    <td style="overflow:auto;width:200px;"><p style="width: 200px; height:100px;">@item.Desc2</p></td>
+
+                    <td>
+                        <a class="btn btn-success" href="~/Products/Edit/@item.ProductID">Edit</a>
+                        &nbsp;
+                        <a class="btn btn-danger" href="~/Products/Delete/@item.ProductID">Delete</a>
+                    </td>
+
+
+                </tr>}
+              
+            </table>
+    </div>
+
+</div>

@@ -221,33 +221,38 @@
                             {
                                 if (x == 0)
                                 {
-                                    <div class="col-lg-12 px-xl-10">
-                                        <a class="btn btn-warning" href="/Home/UserProfile"><b>&lArr;</b></a>
-                                        <div class="carCon">
-                                            <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded nname">
-                                                <h3 class="h2 text-white mb-0">@progressOrder.MainOrder.Client.ClientName</h3>
-                                                <span class="text-primary">User</span>
-                                            </div>
-                                            <ul class="list-unstyled mb-1-9 nname text-center">
+                                                <div class="col-lg-12 px-xl-10">
+                                                    @if (User.IsInRole("Admin"))
+                                                    {
+                                                        <a class="btn btn-warning" href="/AdminDashBoard/Userinfo/@progressOrder.MainOrder.Client.AspUserID"><b>&lArr;</b></a>
+                                                    }
+                                                    else
+                                                    { <a class="btn btn-warning" href="/Home/UserProfile"><b>&lArr;</b></a>}
+                                                    <div class="carCon">
+                                                        <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded nname">
+                                                            <h3 class="h2 text-white mb-0">@progressOrder.MainOrder.Client.ClientName</h3>
+                                                            <span class="text-primary">User</span>
+                                                        </div>
+                                                        <ul class="list-unstyled mb-1-9 nname text-center">
 
-                                                <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Email:</span>@progressOrder.MainOrder.Client.Email</li>
-                                                <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Phone Number:</span>@progressOrder.MainOrder.Client.PhoneNumber</li>
-                                                <li class="mb-2 mb-xl-3 display-28">
-                                                    <span class="display-26 text-secondary me-2 font-weight-600">Total :</span>@progressOrder.MainOrder.TotalPrice JD  &emsp;
-                                                    <span class="display-26 text-secondary me-2 font-weight-600">Discount :</span> @progressOrder.MainOrder.Discount % &nbsp;
+                                                            <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Email:</span>@progressOrder.MainOrder.Client.Email</li>
+                                                            <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Phone Number:</span>@progressOrder.MainOrder.Client.PhoneNumber</li>
+                                                            <li class="mb-2 mb-xl-3 display-28">
+                                                                <span class="display-26 text-secondary me-2 font-weight-600">Total :</span>@progressOrder.MainOrder.TotalPrice JD  &emsp;
+                                                                <span class="display-26 text-secondary me-2 font-weight-600">Discount :</span> @progressOrder.MainOrder.Discount % &nbsp;
 
-                                                </li>
-                                              
-                                                <li class="mb-2 mb-xl-3 display-28">
-                                                    <span class="display-26 text-secondary me-2 font-weight-600">Order ID :</span>@ViewBag.orderid  &emsp;
+                                                            </li>
 
-                                                    <span class="display-26 text-secondary me-2 font-weight-600">Shipping :</span>@progressOrder.MainOrder.shipping JD&nbsp;
-                                                </li>
-                                            </ul>
-                                           
+                                                            <li class="mb-2 mb-xl-3 display-28">
+                                                                <span class="display-26 text-secondary me-2 font-weight-600">Order ID :</span>@ViewBag.orderid  &emsp;
 
-                                        </div>
-                                    </div>
+                                                                <span class="display-26 text-secondary me-2 font-weight-600">Shipping :</span>@progressOrder.MainOrder.shipping JD&nbsp;
+                                                            </li>
+                                                        </ul>
+
+
+                                                    </div>
+                                                </div>
                                     <hr />
                                     x++;
                                 }
@@ -272,12 +277,14 @@
                                         <th scope="col">Price</th>
                                         <th scope="col">Quantity</th>
                                         <th scope="col">Total Price</th>
-                                        <th scope="col"></th>
+                                        @if (User.IsInRole("User"))
+                                        {
+                                            <th scope="col"></th>
+                                        }
+                                            @*<th scope="col">Description</th>*@
+                                            @*<th></th>*@
 
-                                        @*<th scope="col">Description</th>*@
-                                        @*<th></th>*@
-
-                                    </tr>
+                                        </tr>
 
                                     @foreach (var progressOrder1 in Model)
                                     {
@@ -289,19 +296,28 @@
                                             <td>@progressOrder1.Product.ProductPrice</td>
                                             <td>@progressOrder1.Quantity</td>
                                             <td>@progressOrder1.Price</td>
-
-                                            @if (@progressOrder1.CommentStatus == true)
+                                            @if (User.IsInRole("User"))
                                             {
-                                            <td><a class="btn btn-success text-white"><i class="fa-solid fa-check-double"></i> Rated</a></td>}
-                                                        else
-                                                                      {
-                                         <td><a href="/OrderDetails/Rating/@progressOrder1.ProductID" class="btn btn-warning"><i class="fa-regular fa-circle-pause"></i> Rate Product</a></td>
-                                                                       }
 
-                                            @*<td>XXXXXXXXXXXXX</td>*@
+                                                if (@progressOrder1.CommentStatus == true)
+                                                {
+                                                    <td class="text-center">
+                                                        <a class="btn btn-success text-white"><i class="fa-solid fa-check-double"></i> Rated</a>
+                                                        &emsp;
+                                                        <a class="btn btn-warning text-white" href="/OrderDetails/ERating/?id=@progressOrder1.ProductID&orderID=@progressOrder1.OrderID"><i class="fa-regular fa-pen-to-square"></i> Edit</a>
 
-                                            @*   <td><a class="btn btn-warning" href="~/AdminDashboard/DetailsUsers">Details</a></td>*@
-                                        </tr>
+                                                    </td>
+                                                }
+                                                else
+                                                {
+
+                                                    <td class="text-center"><a href="/OrderDetails/Rating/?id=@progressOrder1.ProductID&orderID=@progressOrder1.OrderID" class="btn btn-warning  text-white"><i class="fa-regular fa-circle-pause"></i> Rate Product</a></td>
+                                                }
+                                            }
+                                                @*<td>XXXXXXXXXXXXX</td>*@
+
+                                                @*   <td><a class="btn btn-warning" href="~/AdminDashboard/DetailsUsers">Details</a></td>*@
+                                            </tr>
                                     }
 
                                 </table>

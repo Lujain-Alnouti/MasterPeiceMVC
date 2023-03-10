@@ -219,8 +219,12 @@
                                             if (x == 0)
                                             {
                                                                         <div class="col-lg-12 px-xl-10">
-                                                                            <a class="btn btn-warning" href="/Home/UserProfile"><b>&lArr;</b></a>
-
+                                                                            @if (User.IsInRole("Admin"))
+                                                                            {
+                                                                                <a class="btn btn-warning" href="/AdminDashBoard/Userinfo/@progressOrder.MainOrder.Client.AspUserID"><b>&lArr;</b></a>
+                                                                            }
+                                                                            else
+                                                                            { <a class="btn btn-warning" href="/Home/UserProfile"><b>&lArr;</b></a>}
                                                                             <div class="carCon">
 
                                                                                 <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded nname">
@@ -246,7 +250,8 @@
                                                                                 </ul>
                                                                                 @if (User.IsInRole("Admin"))
                                                                                 {
-                                                                                    <a class="btn donebutton"> Done Order </a>}
+                                                                                    @*@Html.ActionLink("Done Order", "SwitchOrderStatus",)*@
+                                                                                    <a class="btn donebutton" href="/AdminDashBoard/SwitchOrderStatus/@progressOrder.OrderID"> Done Order </a>}
 
                                                                             </div>
                                                                         </div>

@@ -269,7 +269,7 @@
                     @*<div>
         <input type="text" class="" /> <a class="btn btn-primary">Search</a>
     </div>*@
-                    <hr />
+                    @*<hr />*@
                     <div class="col-lg-12 mb-4 mb-sm-5">
                         <div>
                             <span class="section-title text-primary mb-3 mb-sm-4">Progress Orders</span>
@@ -292,7 +292,7 @@
                                 <td>@prog.OrderDate</td>
                                 <td>@prog.TotalPrice JD</td>
 
-                                <td><a class="btn btn-warning" href="~/OrderDetails/ProgressOrderDetails/@prog.OrderID">Details</a></td>
+                                <td><a class="btn btn-warning text-center" href="~/OrderDetails/ProgressOrderDetails/@prog.OrderID">Details</a></td>
                             </tr>
                                         }
 
@@ -324,7 +324,7 @@
                                         <td>@done.OrderDate</td>
                                         <td>@done.TotalPrice JD</td>
 
-                                        <td><a class="btn btn-warning" href="~/OrderDetails/DoneOrderDetails/@done.OrderID">Details</a></td>
+                                        <td><a class="btn btn-warning text-center" href="~/OrderDetails/DoneOrderDetails/@done.OrderID">Details</a></td>
                                     </tr>
                                 }
                             </table>

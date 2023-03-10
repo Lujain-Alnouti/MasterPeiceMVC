@@ -148,7 +148,7 @@
     <Property Name="OrderID" Type="int" />
     <Property Name="Rate" Type="varchar" MaxLength="50" />
     <Property Name="Comment" Type="text" />
-    <Property Name="commentDate" Type="date" />
+    <Property Name="commentDate" Type="datetime" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>

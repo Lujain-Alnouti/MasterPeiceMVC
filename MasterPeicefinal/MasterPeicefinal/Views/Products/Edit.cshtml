@@ -1,0 +1,351 @@
+﻿@model MasterPeicefinal.Models.Product
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_AdminSideBar.cshtml";
+}
+
+@*<h2>Edit</h2>
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Product</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.ProductID)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CateID, "CateID", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("CateID", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CateID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProductImage, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ProductImage, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ProductImage, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Desc1, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Desc1, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Desc1, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Desc2, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Desc2, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Desc2, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProductPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ProductPrice, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ProductPrice, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.TotalQuantity, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TotalQuantity, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TotalQuantity, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }*@
+
+
+<style>
+
+
+    .editForm {
+        width: 50%;
+        margin-left: 25%;
+        margin-top: 30px;
+        margin-bottom: 50px;
+        background-color: #0A4438;
+        color: white;
+        border-radius: 30px;
+    }
+
+
+    .IconColor1 {
+        font-family: 'Times New Roman';
+        color: #0A4438 !important;
+    }
+
+    .IconColor {
+        color: #169179 !important;
+    }
+
+    .inputDIV {
+        width: 80%;
+    }
+
+    .form-group {
+        padding: 20px;
+    }
+
+    .cateIMG {
+        margin-top: 20px;
+        padding-top: 30px;
+        width: 60%;
+        margin-left: 20%;
+    }
+
+    .form-control {
+        margin-top: 15px;
+    }
+
+    /* .form-control-file {
+            margin-left: 25px;
+        }*/
+
+    .editCont {
+        padding-top: 25px;
+        width: 80%;
+        margin-left: 10%;
+    }
+
+    .buttonx {
+        font-size: 15px;
+        color: #0A4438;
+        background-color: #E6E6E6;
+        border-radius: 15px;
+    }
+
+    .btnDIV {
+        padding-bottom: 30px;
+        padding-top: 30px;
+        width: 49%;
+        margin-left: 29%;
+    }
+
+    .cateName {
+        margin-left: 35px;
+        margin-top: 50px;
+    }
+
+    .form-control-file {
+        margin-left: 20px;
+        /*        margin-top: 15px;
+    */
+    }
+
+    @@media only screen and (min-device-width:0px) and (max-device-width:480px) {
+        .editCont {
+            padding-top: 25px;
+            width: 100%;
+            margin-left: unset;
+        }
+
+        .editForm {
+            width: 100%;
+            margin-left: unset;
+            margin-top: 30px;
+            background-color: #0A4438;
+            color: white;
+            border-radius: 30px;
+        }
+
+        .btnDIV {
+            padding-bottom: 30px;
+            padding-top: 30px;
+            width: 83%;
+            margin-left: 8%;
+        }
+
+        .cateIMG {
+            margin-top: 20px;
+            padding-top: 30px;
+            width: 80%;
+            margin-left: 10%;
+        }
+
+        .cateName {
+            margin-left: unset;
+            margin-top: unset;
+            font-size: 15px;
+            text-align: center;
+        }
+
+        .form-control-file {
+            margin-left: unset;
+            margin-top: 15px;
+        }
+    }
+
+    @@media only screen and (min-device-width:481px) and (max-device-width:786px) {
+        .form-group {
+            padding: 20px;
+            margin-left: 55px;
+        }
+
+        .editCont {
+            padding-top: 25px;
+            width: 100%;
+            margin-left: unset;
+        }
+
+        .editForm {
+            width: 80%;
+            margin-left: 10%;
+            margin-top: 30px;
+            background-color: #0A4438;
+            color: white;
+            border-radius: 30px;
+        }
+
+        .btnDIV {
+            padding-bottom: 30px;
+            padding-top: 30px;
+            width: 39%;
+            margin-left: 30%;
+        }
+
+        .cateIMG {
+            margin-top: 20px;
+            padding-top: 30px;
+            width: 60%;
+            margin-left: 12%;
+        }
+
+        .cateName {
+            margin-left: unset;
+            margin-top: unset;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .form-control-file {
+            margin-left: 48px;
+            margin-top: 15px;
+        }
+    }
+</style>
+<h2 style="text-align:center; margin-top:25px" class="IconColor1">Edit Product</h2><hr />
+<div class="container-fluid pt-4 px-4">
+    <span class="IconColor cateName">Product Name : @ViewBag.name1 </span>
+    @using (Html.BeginForm("Edit", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ProductID)
+
+        <div class="editForm">
+            <div class="editCont">
+                <div class="form-group">
+                    @*<label for="exampleInputEmail1">Product Name :</label>
+                        <input type="text" class="form-control inputDIV" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ICU Bed">*@
+                    @Html.LabelFor(model => model.ProductName, "Product Name : ", htmlAttributes: new { @class = "control-label" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control inputDIV" } })
+                        @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    @*<label for="desc">Product Description :</label>
+                        <textarea cols="8" rows="4" class="form-control inputDIV" id="desc" aria-describedby="emailHelp" placeholder="XXXXXXXXXX"></textarea>*@
+                    @Html.LabelFor(model => model.Desc1, "Product Description (breif) : ", htmlAttributes: new { @class = "control-label " })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.Desc1, new { htmlAttributes = new { @class = "form-control inputDIV" }, cols = 43, rows = 5 })
+                        @Html.ValidationMessageFor(model => model.Desc1, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    @*<label for="desc">Product Description :</label>
+                        <textarea cols="8" rows="4" class="form-control inputDIV" id="desc" aria-describedby="emailHelp" placeholder="XXXXXXXXXX"></textarea>*@
+                    @Html.LabelFor(model => model.Desc2, "Product Description (details) : ", htmlAttributes: new { @class = "control-label " })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.Desc2, new { htmlAttributes = new { @class = "form-control inputDIV" }, cols = 43, rows = 5 })
+                        @Html.ValidationMessageFor(model => model.Desc2, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="form-group col-lg-4 col-md-4 col-sm-12">
+                        @*<label for="price">Price:</label>
+                            <input type="number" class="form-control inputDIV" id="price" aria-describedby="emailHelp" placeholder="500">*@
+                        @Html.LabelFor(model => model.ProductPrice, "Price : ", htmlAttributes: new { @class = "control-label" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ProductPrice, new { htmlAttributes = new { @class = "form-control inputDIV" } })
+                            @Html.ValidationMessageFor(model => model.ProductPrice, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                    <div class="form-group col-lg-4 col-md-4 col-sm-12">
+
+
+                        @Html.LabelFor(model => model.CateID, "Category : ", htmlAttributes: new { @class = "control-label" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.CateID, null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.CateID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group col-lg-4 col-md-4 col-sm-12">
+                        @*<label for="price">Price:</label>
+                            <input type="number" class="form-control inputDIV" id="price" aria-describedby="emailHelp" placeholder="500">*@
+                        @Html.LabelFor(model => model.TotalQuantity, "Quantity : ", htmlAttributes: new { @class = "control-label" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.TotalQuantity, new { htmlAttributes = new { @class = "form-control inputDIV" } })
+                            @Html.ValidationMessageFor(model => model.TotalQuantity, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlFile1">Product Image:</label>
+                    <input type="file" class="form-control-file" id="exampleFormControlFile1" accept="image/*" name="productIMG">
+                    <br />
+                    <img src="~/website/@Model.ProductImage" class="cateIMG" />
+
+                </div>
+                <div class="col-md-offset-2 col-md-10 btnDIV">
+                    <input type="submit" value="Update" class="btn buttonx" />
+                    &nbsp; <a class="btn buttonx" href="~/Products/Index">Show Products</a>
+                </div>
+            </div>
+
+
+        </div>}
+</div>

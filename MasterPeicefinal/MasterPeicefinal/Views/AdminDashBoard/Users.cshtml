@@ -1,0 +1,157 @@
+﻿@model IEnumerable<MasterPeicefinal.Models.Client>
+
+@{
+    ViewBag.Title = "Users";
+    Layout = "~/Views/Shared/_AdminSideBar.cshtml";
+}
+
+@*<h2>Users</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ClientName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AspNetUser.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City1.CityName)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClientName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City1.CityName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.ClientID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.ClientID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.ClientID })
+            </td>
+        </tr>
+    }
+
+    </table>*@
+
+<style>
+    .tab {
+        width: 90%;
+        margin-left: 5%;
+    }
+
+    .button {
+        position: relative;
+        display: inline-block;
+        margin: 15px;
+        padding: 5px 10px;
+        text-align: center;
+        font-size: 15px;
+        letter-spacing: 1px;
+        text-decoration: none;
+        color: #0A4438;
+        background: transparent;
+        cursor: pointer;
+        transition: ease-out 0.5s;
+        border: 2px solid #0A4438;
+        border-radius: 10px;
+        box-shadow: inset 0 0 0 0 #0A4438;
+    }
+
+        .button:hover {
+            color: white;
+            box-shadow: inset 0 -100px 0 0 #0A4438;
+        }
+
+        .button:active {
+            transform: scale(0.9);
+        }
+
+    .IconColor1 {
+        font-family: 'Times New Roman';
+        color: #0A4438 !important;
+    }
+
+    .IconColor {
+        color: #169179 !important;
+    }
+</style>
+
+<h2 style="text-align:center; margin-top:30px" class="IconColor1">Users</h2>
+<hr />
+<div class="container-fluid pt-4 px-4">
+    <h6 style="margin-top:10px;margin-bottom:50px;" class="IconColor">Total Users : @ViewBag.userCount</h6>
+
+    <div class="table-responsive">
+        <table class="table text-start align-middle table-bordered table-hover mb-0">
+
+            <tr class="text-dark">
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone Number</th>
+                <th>City</th>
+                <th>Address1</th>
+                <th>Address1</th>
+                <th></th>
+
+            </tr>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.ClientID</td>
+                <td>@item.ClientName</td>
+                <td>@item.Email</td>
+                <td>@item.PhoneNumber</td>
+                <td>
+                    @item.City1.CityName
+                </td>
+                <td>
+                    @item.Address1
+                </td>
+                <td>
+                    @item.Address2
+                </td>
+                <td><a class="btn btn-warning" href="~/AdminDashBoard/Userinfo/@item.AspUserID">Details</a></td>
+            </tr>}
+            
+        </table>
+    </div>
+
+</div>
+

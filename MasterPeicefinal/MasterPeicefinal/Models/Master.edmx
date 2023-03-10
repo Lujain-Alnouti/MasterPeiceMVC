@@ -153,7 +153,7 @@
           <Property Name="OrderID" Type="int" />
           <Property Name="Rate" Type="varchar" MaxLength="50" />
           <Property Name="Comment" Type="text" />
-          <Property Name="commentDate" Type="date" />
+          <Property Name="commentDate" Type="datetime" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -654,7 +654,7 @@
           <Property Name="OrderID" Type="Int32" />
           <Property Name="Rate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="commentDate" Type="DateTime" Precision="0" />
+          <Property Name="commentDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Client" Relationship="MasterPeiceModel.FK_Ratings_Client" FromRole="Rating" ToRole="Client" />
           <NavigationProperty Name="MainOrder" Relationship="MasterPeiceModel.FK_Ratings_MainOrders" FromRole="Rating" ToRole="MainOrder" />
           <NavigationProperty Name="Product" Relationship="MasterPeiceModel.FK_Ratings_Products" FromRole="Rating" ToRole="Product" />

@@ -2,6 +2,8 @@
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.SqlServer;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -37,9 +39,21 @@ namespace MasterPeicefinal.Controllers
             var clientID = db.Clients.FirstOrDefault(c => c.AspUserID == user).ClientID;
             ViewBag.ProgressOrder = db.MainOrders.Where(a => a.OrderStatus == false && a.UserID==clientID).ToList();
             ViewBag.DoneOrder = db.MainOrders.Where(a => a.OrderStatus == true && a.UserID == clientID).ToList();
+            
 
-           
+
             return View(db.Clients.Where(a=>a.AspUserID==user).ToList());
         }
+
+
+        public ActionResult EditProfile()
+        {
+            var user = User.Identity.GetUserId();
+            var clientID = db.Clients.FirstOrDefault(c => c.AspUserID == user).ClientID;
+            return View(db.Clients.Where(a => a.AspUserID == user).ToList());
+        }
+
+
+
     }
 }

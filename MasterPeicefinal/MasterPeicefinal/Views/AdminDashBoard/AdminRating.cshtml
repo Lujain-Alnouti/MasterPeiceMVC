@@ -1,0 +1,284 @@
+﻿@model IEnumerable<MasterPeicefinal.Models.Rating>
+
+@{
+    ViewBag.Title = "AdminRating";
+    Layout = "~/Views/Shared/_AdminSideBar.cshtml";
+}
+
+@*<h2>AdminRating</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Rate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.commentDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Client.AspUserID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MainOrder.OrderTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.ProductName)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.commentDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Client.AspUserID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MainOrder.OrderTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.ProductName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.RateID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.RateID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.RateID })
+            </td>
+        </tr>
+    }
+
+    </table>*@
+
+
+<style>
+    .IconColor1 {
+        font-family: 'Times New Roman';
+        color: #0A4438 !important;
+    }
+
+    .IconColor {
+        color: #169179 !important;
+    }
+
+    .card {
+        width: 70%;
+        margin-left: 15%;
+        height: 200px;
+        padding: .8em;
+        background: #f5f5f5;
+        position: relative;
+        overflow: visible;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    }
+
+    .card-img {
+        background-color: #0A4438;
+        height: 90px;
+        width: 100%;
+        border-radius: .5rem;
+        transition: .3s ease;
+    }
+
+    .card-info {
+        padding-top: 10%;
+    }
+
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .card-footer {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 10px;
+        border-top: 1px solid #ddd;
+    }
+
+    /*Text*/
+    .text-title {
+        font-weight: 900;
+        font-size: 1.2em;
+        line-height: 1.5;
+    }
+
+    .text-body {
+        font-size: .9em;
+        padding-bottom: 10px;
+    }
+
+    /*Button*/
+    .card-button {
+        border: 1px solid #252525;
+        display: flex;
+        padding: .3em;
+        cursor: pointer;
+        border-radius: 50px;
+        transition: .3s ease-in-out;
+    }
+
+    /*Hover*/
+    .card-img:hover {
+        transform: translateY(-25%);
+        box-shadow: rgba(226, 196, 63, 0.25) 0px 13px 47px -5px, rgba(180, 71, 71, 0.3) 0px 8px 16px -8px;
+    }
+
+    .card-button:hover {
+        border: 1px solid #ffcaa6;
+        background-color: #ffcaa6;
+    }
+
+    .textinfo {
+        color: #E6E6E6;
+        text-align: center;
+        font-size: 25px;
+        padding: 25px;
+    }
+
+    .textinfo1 {
+        text-align: center;
+        padding-top: 25px;
+    }
+
+    @@media only screen and (min-device-width:0px) and (max-device-width:480px) {
+        .card {
+            margin-bottom: 20px;
+        }
+    }
+
+    @@media only screen and (min-device-width:481px) and (max-device-width:786px) {
+        .card {
+            margin-bottom: 20px;
+        }
+    }
+</style>
+<script src="https://kit.fontawesome.com/a8b56cb52b.js" crossorigin="anonymous"></script>
+
+<h2 style="text-align:center; margin-top:30px" class="IconColor1">FeedBack</h2>
+<hr />
+<div class="container-fluid pt-4 px-4">
+
+    <div class="row">
+        <div class="col-lg-2 col-sm-6 col-md-4">
+            <div class="card">
+                <a href="/AdminDashBoard/AdminRating">
+                    <div class="card-img textinfo"> @ViewBag.RateAll</div></a>
+                    <div class="card-info">
+                        <p class="text-title text-center">Total Rating</p>
+                    </div>
+
+            </div>
+
+        </div>
+        <div class="col-lg-2 col-sm-6 col-md-4">
+            <div class="card">
+                <a href="/AdminDashBoard/Rating5">
+                <div class="card-img textinfo"> @ViewBag.Rate5</div></a>
+                <div class="card-info">
+                    <p class="text-title textinfo1">5 🌟</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-2 col-sm-6 col-md-4">
+            <div class="card">
+                <a href="/AdminDashBoard/Rating4">
+                    <div class="card-img textinfo">@ViewBag.Rate4</div></a>
+                    <div class="card-info">
+                        <p class="text-title textinfo1">4 🌟</p>
+                    </div>
+
+            </div>
+
+        </div>
+        <div class="col-lg-2 col-sm-6 col-md-4">
+            <div class="card">
+                <a href="/AdminDashBoard/Rating3">
+                    <div class="card-img textinfo">@ViewBag.Rate3</div></a>
+                    <div class="card-info">
+                        <p class="text-title textinfo1">3 🌟</p>
+                    </div>
+
+            </div>
+
+        </div>
+        <div class="col-lg-2 col-sm-6 col-md-4">
+            <div class="card">
+                <a href="/AdminDashBoard/Rating2">
+                    <div class="card-img textinfo">@ViewBag.Rate2</div></a>
+                    <div class="card-info">
+                        <p class="text-title textinfo1">2 🌟</p>
+                    </div>
+
+            </div>
+
+        </div>
+        <div class="col-lg-2 col-sm-6 col-md-4">
+            <div class="card">
+                <a href="/AdminDashBoard/Rating1">
+                    <div class="card-img textinfo">@ViewBag.Rate1</div></a>
+                    <div class="card-info">
+                        <p class="text-title textinfo1">1 🌟</p>
+                    </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<div class="container-fluid pt-4 px-4 mt-3">
+    <div class="table-responsive">
+        <table class="table text-start align-middle table-bordered table-hover mb-0">
+
+            <tr class="text-dark">
+                <th scope="col">ID</th>
+                <th scope="col">User Name</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Order ID</th>
+                <th scope="col">Rate</th>
+                <th scope="col">Comment</th>
+                <th scope="col">Date</th>
+
+                @*<th></th>*@
+
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.RateID</td>
+                    <td>@item.Client.ClientName</td>
+                    <td>@item.Product.ProductName</td>
+                    <td>@item.OrderID</td>
+                    <td>@item.Rate 🌟</td>
+                    <td>@item.Comment</td>
+                    <td>@item.commentDate</td>
+
+
+                    @*<td><a class="btn btn-warning" href="~/AdminDashboard/ProgressOrderDetails">Details</a></td>*@
+                </tr>}
+
+
+            </table>
+    </div>
+</div>
+
+
